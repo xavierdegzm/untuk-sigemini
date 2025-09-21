@@ -1,0 +1,93 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Untuk Sigemini 🌼</title>
+  <style>
+    body {
+      background-color: #fff7f3;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+    }
+    #text {
+      font-size: 1.5em;
+      color: #444;
+      max-width: 600px;
+      margin-bottom: 30px;
+      min-height: 120px;
+    }
+    button {
+      padding: 12px 25px;
+      font-size: 1.2em;
+      background-color: #ff69b4;
+      color: white;
+      border: none;
+      border-radius: 15px;
+      cursor: pointer;
+      display: none;
+    }
+    button:hover {
+      background-color: #ff1493;
+    }
+  </style>
+</head>
+<body>
+  <div id="text"></div>
+  <button onclick="kirimWA()">Aku juga seneng kenal kamu 🫶</button>
+
+  <script>
+    const teks = [
+      "Hai Gemini yang paling manis 😊",
+      "Maaf ya kalau tiba-tiba kirim ini...",
+      "Aku cuma pengen nyampaikan sesuatu... hehe.",
+      "Kita memang baru kenal, belum lama...",
+      "Tapi aku nggak ngerti kenapa, setiap ngobrol sama kamu tuh rasanya hangat.",
+      "Aku nyaman banget, kayak udah kenal lama aja.",
+      "Aku nungguin chat kamu, senyum-senyum sendiri kalau kamu balas.",
+      "Cuma pengen kamu tahu aja...",
+      "Aku seneng kenal kamu ",
+      "Itu aja sih... makasih udah baca sampai sini 🙈"
+    ];
+
+    let idx = 0;
+    let charIdx = 0;
+    const textDiv = document.getElementById("text");
+    const button = document.querySelector("button");
+
+    function ketik() {
+      if (idx < teks.length) {
+        const kalimat = teks[idx];
+        if (charIdx < kalimat.length) {
+          textDiv.innerHTML += kalimat.charAt(charIdx);
+          charIdx++;
+          setTimeout(ketik, 40);
+        } else {
+          textDiv.innerHTML += "<br><br>";
+          idx++;
+          charIdx = 0;
+          setTimeout(ketik, 600);
+        }
+      } else {
+        button.style.display = "inline-block";
+      }
+    }
+
+    function kirimWA() {
+      const pesan = encodeURIComponent("Hai, makasih udah baca sampai akhir. Aku beneran seneng bisa kenal kamu. 🥺✨");
+      const link = `https://wa.me/?text=${pesan}`;
+      window.open(link, "_blank");
+    }
+
+    window.onload = ketik;
+  </script>
+</body>
+</html>
